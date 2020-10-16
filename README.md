@@ -1,6 +1,9 @@
 # Redchannel
 Simplified pub/sub messaging with redis
 
+## Warning
+This library is intended for fast, fire-and-forget messaging, in situations where dropped messages are acceptable.
+
 ## Available Scripts
 
 In the project directory, you can run:
