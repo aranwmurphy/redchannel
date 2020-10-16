@@ -6,8 +6,7 @@ function errorListener(err: any) {}
 
 export class RedSubscriber extends EventEmitter {
     private readonly channels: Set<string> = new Set<string>();
-    private readonly listener: any =
-        (c: string, m: string) => (this.channels.has(c) && this.emit(c, m));
+    private readonly listener: any = this.propogate.bind(this);
 
     constructor(public readonly client: Redis) {
         super();
@@ -15,7 +14,17 @@ export class RedSubscriber extends EventEmitter {
         client.on("message", this.listener);
     }
 
-    public async destroy() {
+    protected propogate(channel: string, message: string): void {
+        if (this.channels.has(channel)) {
+            this.emit(channel, message);
+        }
+    }
+
+    public subscriptions(): string[] {
+        return [...this.channels];
+    }
+
+    public async destroy(): Promise<void> {
         this.client.removeListener("message", this.listener);
         this.removeListener("error", errorListener);
         await this.unsubscribe([...this.channels]);

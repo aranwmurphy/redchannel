@@ -54,7 +54,7 @@ async function main() {
         // Bar
     });
     
-    // Clean up subscriptions.
+    // Clean up subscriptions. After this point a new instance must be created
     await channel.destroy();
 
     // Remove all event listeners (your responsibility).
@@ -111,7 +111,7 @@ async function main(): Promise<void> {
         // Bar
     });
     
-    // Clean up subscriptions.
+    // Clean up subscriptions. After this point a new instance must be created
     await channel.destroy();
 
     // Remove all event listeners (your responsibility).
