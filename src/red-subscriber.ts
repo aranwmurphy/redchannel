@@ -4,7 +4,10 @@ import { Redis } from "ioredis";
 // tslint:disable-next-line: no-empty
 function errorListener(err: any) {}
 
+export const MESSAGE: symbol = Symbol("message");
+
 export class RedSubscriber extends EventEmitter {
+
     private readonly channels: Set<string> = new Set<string>();
     private readonly listener: any = this.propogate.bind(this);
 
@@ -17,6 +20,7 @@ export class RedSubscriber extends EventEmitter {
     protected propogate(channel: string, message: string): void {
         if (this.channels.has(channel)) {
             this.emit(channel, message);
+            this.emit(MESSAGE, message);
         }
     }
 
