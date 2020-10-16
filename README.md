@@ -54,10 +54,10 @@ async function main() {
         // Bar
     });
     
-    // Clean up subscriptions
+    // Clean up subscriptions.
     await channel.destroy();
 
-    // Remove all event listeners (your responsibility)
+    // Remove all event listeners (your responsibility).
     channel.removeAllListeners();
 }
 ```
@@ -111,10 +111,10 @@ async function main(): Promise<void> {
         // Bar
     });
     
-    // Clean up subscriptions
+    // Clean up subscriptions.
     await channel.destroy();
 
-    // Remove all event listeners (your responsibility)
+    // Remove all event listeners (your responsibility).
     channel.removeAllListeners();
 }
 ```
