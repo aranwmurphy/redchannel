@@ -1,6 +1,6 @@
 {
   "name": "redchannel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simplified pub/sub messaging with redis",
   "main": "lib/index.js",
   "scripts": {
