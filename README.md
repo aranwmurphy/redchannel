@@ -1,4 +1,4 @@
-# Redchannel
+# RedChannel
 Simplified pub/sub messaging with redis
 
 ## Warning
