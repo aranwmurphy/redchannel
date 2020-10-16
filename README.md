@@ -45,8 +45,16 @@ async function main() {
     // Unsubscribe from all messages on "global:logs".
     await channel.unsubscribe(['global:logs']);
 
+    // Print current subscriptions
+    console.log(channel.subscriptions());
+    // []
+
     // Subscribe to all messages on "global:logs".
     await channel.subscribe(['global:events']);
+
+    // Print current subscriptions
+    console.log(channel.subscriptions());
+    // ['global:events']
 
     // Process all messages published on "global:events".
     channel.on('global:events', (message) => {
@@ -102,8 +110,16 @@ async function main(): Promise<void> {
     // Unsubscribe from all messages on "global:logs".
     await channel.unsubscribe(["global:logs"]);
 
+    // Print current subscriptions
+    console.log(channel.subscriptions());
+    // []
+
     // Subscribe to all messages on "global:logs".
     await channel.subscribe(["global:events"]);
+
+    // Print current subscriptions
+    console.log(channel.subscriptions());
+    // ['global:events']
 
     // Process all messages published on "global:events".
     channel.on("global:events", (message: string) => {
