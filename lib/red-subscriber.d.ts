@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import { EventEmitter } from "events";
 import { Redis } from "ioredis";
+export declare const MESSAGE: symbol;
 export declare class RedSubscriber extends EventEmitter {
     readonly client: Redis;
     private readonly channels;
