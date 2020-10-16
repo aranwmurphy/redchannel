@@ -1,5 +1,5 @@
 # RedChannel
-Simplified pub/sub messaging with redis
+Simplified pub/sub messaging with Redis
 
 ## Warning
 This library is intended for fast, fire-and-forget messaging, in situations where dropped messages are acceptable.
