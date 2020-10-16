@@ -26,8 +26,8 @@ Lints the project files.
 ### JavaScript (Subscriber)
 
 ```javascript
-const { RedSubscriber } = require("redchannel");
 const Redis = require('ioredis');
+const { RedSubscriber } = require("redchannel");
 
 const client = new Redis();
 const channel = new RedSubscriber(client);
@@ -65,8 +65,8 @@ async function main() {
 ### JavaScript (Publisher)
 
 ```javascript
-const { RedPublisher } = require("redchannel");
 const Redis = require('ioredis');
+const { RedPublisher } = require("redchannel");
 
 const client = new Redis();
 const channel = new RedPublisher(client);
