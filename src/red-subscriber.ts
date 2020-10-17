@@ -9,7 +9,7 @@ export class RedSubscriber extends EventEmitter {
     public static readonly MESSAGE: symbol = Symbol("message");
 
     private readonly channels: Set<string> = new Set<string>();
-    private readonly listener: any = this.propogate.bind(this);
+    private readonly listener: any = this.onmessage.bind(this);
 
     constructor(public readonly client: Redis) {
         super();
@@ -17,7 +17,7 @@ export class RedSubscriber extends EventEmitter {
         client.on("message", this.listener);
     }
 
-    protected propogate(channel: string, message: string): void {
+    protected onmessage(channel: string, message: string): void {
         if (this.channels.has(channel)) {
             this.emit(RedSubscriber.MESSAGE, channel, message);
             this.emit(channel, message);
