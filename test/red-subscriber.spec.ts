@@ -38,7 +38,7 @@ describe("RedSubscriber", () => {
     describe("#subscribe()", () => {
         it("should add subscriptions", async () => {
             const subscriber = new RedSubscriber(subClient);
-            const channels = ["test:subscribe","test:subscribe"];
+            const channels = ["test:subscribe", "test:subscribe"];
 
             await subscriber.subscribe(channels);
             expect(subscriber.subscriptions().length).to.equal(1);
@@ -71,7 +71,7 @@ describe("RedSubscriber", () => {
     describe("#unsubscribe()", () => {
         it("should remove subscriptions", async () => {
             const subscriber = new RedSubscriber(subClient);
-            const channels = ["test:unsubscribe","test:unsubscribe"];
+            const channels = ["test:unsubscribe", "test:unsubscribe"];
 
             await subscriber.subscribe(channels);
             expect(subscriber.subscriptions().length).to.equal(1);
