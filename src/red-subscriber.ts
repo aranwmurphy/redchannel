@@ -31,17 +31,17 @@ export class RedSubscriber extends EventEmitter {
         await this.unsubscribe([...this.channels]);
     }
 
-    public async subscribe(names: string[]): Promise<void> {
-        await this.client.subscribe(names);
-        for (const name of names) {
-            this.channels.add(name);
+    public async subscribe(channels: string[]): Promise<void> {
+        await this.client.subscribe(channels);
+        for (const channel of channels) {
+            this.channels.add(channel);
         }
     }
 
-    public async unsubscribe(names: string[]): Promise<void> {
-        await this.client.unsubscribe(names);
-        for (const name of names) {
-            this.channels.delete(name);
+    public async unsubscribe(channels: string[]): Promise<void> {
+        await this.client.unsubscribe(channels);
+        for (const channel of channels) {
+            this.channels.delete(channel);
         }
     }
 }
