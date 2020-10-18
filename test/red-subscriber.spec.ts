@@ -55,8 +55,9 @@ describe("RedSubscriber", () => {
             const channel = "test:subscribe";
 
             const verifier = new Promise((resolve, reject) => {
-                subscriber.on(channel,
-                    (message) => (message === timestamp && resolve()));
+                subscriber.on("message",
+                    (ch, message) => (channel === ch &&
+                        message === timestamp && resolve()));
             });
 
             await subscriber.subscribe([channel]);
