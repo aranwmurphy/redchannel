@@ -113,7 +113,7 @@ async function main(): Promise<void> {
 
     // Check if subscribed to a channel
     console.log(channel.subscribed("global:logs"));
-    // false
+    // true
     
     // Unsubscribe from all messages on "global:logs".
     await channel.unsubscribe(["global:logs"]);
