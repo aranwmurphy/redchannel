@@ -6,8 +6,6 @@ function errorListener(err: any) {}
 
 export class RedSubscriber extends EventEmitter {
 
-    public static readonly MESSAGE: symbol = Symbol("message");
-
     private readonly channels: Set<string> = new Set<string>();
     private readonly listener: any = this.onmessage.bind(this);
 
@@ -19,8 +17,7 @@ export class RedSubscriber extends EventEmitter {
 
     protected onmessage(channel: string, message: string): void {
         if (this.channels.has(channel)) {
-            this.emit(RedSubscriber.MESSAGE, channel, message);
-            this.emit(channel, message);
+            this.emit("message", channel, message);
         }
     }
 
