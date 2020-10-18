@@ -16,13 +16,17 @@ export class RedSubscriber extends EventEmitter {
     }
 
     protected onmessage(channel: string, message: string): void {
-        if (this.channels.has(channel)) {
+        if (this.subscribed(channel)) {
             this.emit("message", channel, message);
         }
     }
 
     public subscriptions(): string[] {
         return [...this.channels];
+    }
+
+    public subscribed(channel: string): boolean {
+        return this.channels.has(channel);
     }
 
     public async destroy(): Promise<void> {

@@ -35,6 +35,31 @@ describe("RedSubscriber", () => {
         });
     });
 
+    describe("#subscribed()", () => {
+        it("should return true if subscribed", async () => {
+            const subscriber = new RedSubscriber(subClient);
+            const channels = ["test:subscribed"];
+
+            await subscriber.subscribe(channels);
+            expect(subscriber.subscribed(channels[0])).to.equal(true);
+
+            subscriber.removeAllListeners();
+            await subscriber.destroy();
+        });
+
+        it("should return false if not subscribed", async () => {
+            const subscriber = new RedSubscriber(subClient);
+            const channels = ["test:subscribed"];
+
+            await subscriber.subscribe(channels);
+            channels[0] = "test:foo";
+            expect(subscriber.subscribed(channels[0])).to.equal(false);
+
+            subscriber.removeAllListeners();
+            await subscriber.destroy();
+        });
+    });
+
     describe("#subscribe()", () => {
         it("should add subscriptions", async () => {
             const subscriber = new RedSubscriber(subClient);

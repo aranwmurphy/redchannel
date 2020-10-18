@@ -41,6 +41,10 @@ async function main() {
         console.log(message);
         // Foo
     });
+
+    // Check if subscribed to a channel
+    console.log(channel.subscribed('global:logs'));
+    // true
     
     // Unsubscribe from all messages on "global:logs".
     await channel.unsubscribe(['global:logs']);
@@ -106,6 +110,10 @@ async function main(): Promise<void> {
         console.log(message);
         // Foo
     });
+
+    // Check if subscribed to a channel
+    console.log(channel.subscribed("global:logs"));
+    // false
     
     // Unsubscribe from all messages on "global:logs".
     await channel.unsubscribe(["global:logs"]);
