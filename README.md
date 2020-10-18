@@ -37,8 +37,8 @@ async function main() {
     await channel.subscribe(['global:logs']);
 
     // Process all messages published on "global:logs".
-    channel.on('global:logs', (message) => {
-        console.log(message);
+    channel.on('message', (channel, message) => {
+        channel === 'global:logs' && console.log(message);
         // Foo
     });
 
@@ -65,8 +65,8 @@ async function main() {
     // ['global:events']
 
     // Process all messages published on "global:events".
-    channel.on('global:events', (message) => {
-        console.log(message);
+    channel.on('message', (message) => {
+        channel === 'global:events' && console.log(message);
         // Bar
     });
     
@@ -110,8 +110,8 @@ async function main(): Promise<void> {
     await channel.subscribe(["global:logs"]);
 
     // Process all messages published on "global:logs".
-    channel.on("global:logs", (message: string) => {
-        console.log(message);
+    channel.on("message", (channel: string, message: string) => {
+        channel === "global:logs" && console.log(message);
         // Foo
     });
 
@@ -138,8 +138,8 @@ async function main(): Promise<void> {
     // ['global:events']
 
     // Process all messages published on "global:events".
-    channel.on("global:events", (message: string) => {
-        console.log(message);
+    channel.on('message', (message: string) => {
+       channel === "global:events" && console.log(message);
         // Bar
     });
     
