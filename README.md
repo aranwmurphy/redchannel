@@ -65,7 +65,7 @@ async function main() {
     // ['global:events']
 
     // Process all messages published on "global:events".
-    channel.on('message', (message) => {
+    channel.on('message', (channel, message) => {
         channel === 'global:events' && console.log(message);
         // Bar
     });
@@ -138,7 +138,7 @@ async function main(): Promise<void> {
     // ['global:events']
 
     // Process all messages published on "global:events".
-    channel.on('message', (message: string) => {
+    channel.on('message', (channel: string, message: string) => {
        channel === "global:events" && console.log(message);
         // Bar
     });
