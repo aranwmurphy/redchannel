@@ -32,7 +32,7 @@ export class RedSubscriber extends EventEmitter {
     public async destroy(): Promise<void> {
         this.client.removeListener("message", this.listener);
         this.removeListener("error", errorListener);
-        await this.unsubscribe([...this.channels]);
+        await this.unsubscribe(this.subscriptions());
     }
 
     public async subscribe(channels: string | string[]): Promise<void> {
