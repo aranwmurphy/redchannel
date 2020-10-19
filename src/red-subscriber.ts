@@ -19,12 +19,6 @@ export class RedSubscriber extends EventEmitter {
     }
 
     protected onmessage(channel: string, message: string): void {
-        try {
-            this.parse && (message = JSON.parse(message));
-        } catch (err) {
-            this.emit("error", err);
-        }
-
         if (this.subscribed(channel)) {
             this.emit("message", channel, message);
         }
