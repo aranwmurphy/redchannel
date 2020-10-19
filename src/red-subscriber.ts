@@ -6,16 +6,25 @@ function errorListener(err: any) {}
 
 export class RedSubscriber extends EventEmitter {
 
-    private readonly channels: Set<string> = new Set<string>();
-    private readonly listener: any = this.onmessage.bind(this);
+    protected readonly channels: Set<string> = new Set<string>();
+    protected readonly listener: any = this.onmessage.bind(this);
 
-    constructor(public readonly client: Redis) {
+    constructor(
+        public readonly client: Redis,
+        protected readonly parse: boolean = false,
+    ) {
         super();
         this.on("error", errorListener);
         client.on("message", this.listener);
     }
 
     protected onmessage(channel: string, message: string): void {
+        try {
+            this.parse && (message = JSON.parse(message));
+        } catch (err) {
+            this.emit("error", err);
+        }
+
         if (this.subscribed(channel)) {
             this.emit("message", channel, message);
         }
