@@ -4,7 +4,9 @@ export class RedPublisher {
 
     constructor(public readonly client: Redis) {}
 
-    public async publish(channel: string, event: string): Promise<void> {
-        await this.client.publish(channel, event);
+    public async publish<T>(channel: string, event: T): Promise<void> {
+        const message = typeof event !== "string"
+            ? JSON.stringify(event) : event;
+        await this.client.publish(channel, message);
     }
 }
