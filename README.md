@@ -2,7 +2,7 @@
 Simplified pub/sub messaging with Redis
 
 ## Warning
-This library is intended for fast, fire-and-forget messaging, in situations where dropped messages are acceptable.
+This library is intended for fast, fire-and-forget messaging, in situations where dropped messages are acceptable. This is due to the nature of Redis pub/sub.
 
 ## Available Scripts
 
