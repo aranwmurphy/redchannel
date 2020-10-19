@@ -9,10 +9,7 @@ export class RedSubscriber extends EventEmitter {
     protected readonly channels: Set<string> = new Set<string>();
     protected readonly listener: any = this.onmessage.bind(this);
 
-    constructor(
-        public readonly client: Redis,
-        public readonly events: boolean = true,
-    ) {
+    constructor(public readonly client: Redis) {
         super();
         this.on("error", errorListener);
         client.on("message", this.listener);
