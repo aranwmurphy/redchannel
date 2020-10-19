@@ -11,7 +11,7 @@ export class RedSubscriber extends EventEmitter {
 
     constructor(
         public readonly client: Redis,
-        protected readonly parse: boolean = false,
+        public readonly events: boolean = true,
     ) {
         super();
         this.on("error", errorListener);
