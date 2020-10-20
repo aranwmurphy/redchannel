@@ -42,6 +42,12 @@ async function main() {
         // Foo
     });
 
+    // Process all messages published on "global:logs".
+    channel.on('global:logs', (message) => {
+        console.log(message);
+        // Foo
+    });
+
     // Check if subscribed to a channel
     console.log(channel.subscribed('global:logs'));
     // true
@@ -112,6 +118,12 @@ async function main(): Promise<void> {
     // Process all messages published on "global:logs".
     channel.on("message", (channel: string, message: string) => {
         channel === "global:logs" && console.log(message);
+        // Foo
+    });
+
+    // Process all messages published on "global:logs".
+    channel.on('global:logs', (message) => {
+        console.log(message);
         // Foo
     });
 
