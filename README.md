@@ -67,7 +67,7 @@ async function main() {
     // Process all messages published on "global:events".
     channel.on('message', (channel, message) => {
         channel === 'global:events' && console.log(message);
-        // Bar
+        // { foo: 'bar' }
     });
     
     // Clean up subscriptions. After this point a new instance must be created
@@ -92,7 +92,7 @@ async function main() {
     await channel.publish('global:logs', 'Foo');
 
     // Publish message to all listeners on "global:events";
-    await channal.publish('global:events', 'Bar');
+    await channal.publish('global:events', { foo: 'bar' });
 }
 ```
 
@@ -140,7 +140,7 @@ async function main(): Promise<void> {
     // Process all messages published on "global:events".
     channel.on('message', (channel: string, message: string) => {
        channel === "global:events" && console.log(message);
-        // Bar
+        // { foo: 'bar' }
     });
     
     // Clean up subscriptions. After this point a new instance must be created
@@ -166,7 +166,7 @@ async function main(): Promise<void> {
     await channel.publish("global:logs", "Foo");
 
     // Publish message to all listeners on "global:events";
-    await channal.publish("global:events", "Bar");
+    await channal.publish("global:events", { foo: "bar" });
 }
 ```
 
