@@ -33,18 +33,12 @@ export class RedSubscriber extends EventEmitter {
         }
     }
 
-    public subscriptions(): string[] {
-        return [...this.channels];
-    }
-
     public subscribed(channel: string): boolean {
         return this.channels.has(channel);
     }
 
-    public async destroy(): Promise<void> {
-        this.client.removeListener("message", this.listener);
-        this.removeListener("error", errorListener);
-        await this.unsubscribe(this.subscriptions());
+    public subscriptions(): string[] {
+        return [...this.channels];
     }
 
     public async subscribe(channels: string | string[]): Promise<void> {
@@ -67,5 +61,11 @@ export class RedSubscriber extends EventEmitter {
         for (const channel of channels) {
             this.channels.delete(channel);
         }
+    }
+
+    public async destroy(): Promise<void> {
+        this.client.removeListener("message", this.listener);
+        this.removeListener("error", errorListener);
+        await this.unsubscribe(this.subscriptions());
     }
 }
