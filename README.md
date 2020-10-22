@@ -64,7 +64,7 @@ async function main() {
     // []
 
     // Subscribe to all messages on "global:logs".
-    await channel.subscribe(['global:events']);
+    await channel.subscribe('global:events');
 
     // Print current subscriptions
     console.log(channel.subscriptions());
@@ -143,7 +143,7 @@ async function main(): Promise<void> {
     // []
 
     // Subscribe to all messages on "global:logs".
-    await channel.subscribe(["global:events"]);
+    await channel.subscribe("global:events");
 
     // Print current subscriptions
     console.log(channel.subscriptions());

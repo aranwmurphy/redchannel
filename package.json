@@ -1,7 +1,7 @@
 {
   "name": "redchannel",
   "version": "2.0.0",
-  "description": "Simplified pub/sub messaging with redis",
+  "description": "Simplified pub/sub messaging with Redis",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib/* && tsc",
@@ -16,6 +16,7 @@
   },
   "keywords": [
     "pub",
+    "fire-and-forget",
     "sub",
     "pubsub",
     "redis",

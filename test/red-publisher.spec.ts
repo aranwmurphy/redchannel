@@ -1,5 +1,3 @@
-// tslint:disable-next-line: no-implicit-dependencies
-import { expect } from "chai";
 import Redis = require("ioredis");
 import { RedPublisher, RedSubscriber } from "../src";
 
@@ -17,8 +15,7 @@ describe("RedPublisher", () => {
 
             const verifier = new Promise((resolve, reject) => {
                 subscriber.on("message",
-                    (ch, message) => (channel === ch &&
-                        message === timestamp && resolve()));
+                    (ch, message) => (channel === ch && message === timestamp && resolve()));
             });
 
             await subscriber.subscribe([channel]);
