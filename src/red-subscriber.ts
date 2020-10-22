@@ -22,13 +22,11 @@ export class RedSubscriber extends EventEmitter {
         if (!this.subscribed(channel)) {
             return;
         }
-
         try {
             message = JSON.parse(message);
         } catch (err) {
             this.emit("error", err);
         }
-
         this.emit("message", channel, message);
         if (this.events) {
             this.emit(channel, message);
