@@ -8,9 +8,9 @@ export declare class RedSubscriber extends EventEmitter {
     protected readonly listener: any;
     constructor(client: Redis, events?: boolean);
     protected onmessage(channel: string, message: string): void;
-    subscriptions(): string[];
     subscribed(channel: string): boolean;
-    destroy(): Promise<void>;
+    subscriptions(): string[];
     subscribe(channels: string | string[]): Promise<void>;
     unsubscribe(channels: string | string[]): Promise<void>;
+    destroy(): Promise<void>;
 }
