@@ -7,6 +7,6 @@
     "rules": {},
     "rulesDirectory": [],
     "linterOptions": {
-        "exclude": ["client", "tsconfig.json"]
+        "exclude": ["tsconfig.json"]
     }
 }
