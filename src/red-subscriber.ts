@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { Redis } from "ioredis";
 
 // tslint:disable-next-line: no-empty
-function errorListener(err: any) {}
+function onerror(err: any) {}
 
 export class RedSubscriber extends EventEmitter {
 
@@ -14,7 +14,7 @@ export class RedSubscriber extends EventEmitter {
         public readonly events: boolean = true,
     ) {
         super();
-        this.on("error", errorListener);
+        this.on("error", onerror);
         client.on("message", this.listener);
     }
 
@@ -65,7 +65,7 @@ export class RedSubscriber extends EventEmitter {
 
     public async destroy(): Promise<void> {
         this.client.removeListener("message", this.listener);
-        this.removeListener("error", errorListener);
+        this.removeListener("error", onerror);
         await this.unsubscribe(this.subscriptions());
     }
 }
