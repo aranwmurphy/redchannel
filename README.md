@@ -2,7 +2,7 @@
 Simplified pub/sub messaging with Redis
 
 ## Warning
-This library is intended for fast, fire-and-forget messaging, in situations where dropped messages are acceptable. This is due to the nature of Redis pub/sub.
+This library is intended for fast, fire-and-forget messaging, in situations where dropped messages are acceptable. This is due to the nature of Redis pub/sub. Additionally, if you intend to use this library at scale, please set the events parameter in the constructor to false. This will improve performance, but prevent the use of event-specific listeners.
 
 ## Available Scripts
 
@@ -30,19 +30,20 @@ const Redis = require('ioredis');
 const { RedSubscriber } = require('redchannel');
 
 const client = new Redis();
+// Use "new RedSubscriber(client, false)" if you intend to use this library at scale
 const channel = new RedSubscriber(client);
 
 async function main() {
     // Subscribe to all messages on "global:logs".
     await channel.subscribe(['global:logs']);
 
-    // Process all messages published on "global:logs".
+    // (Generic listener) Process all messages published on "global:logs".
     channel.on('message', (channel, message) => {
         channel === 'global:logs' && console.log(message);
         // Foo
     });
 
-    // Process all messages published on "global:logs".
+    // (Event specific listener) Process all messages published on "global:logs".
     channel.on('global:logs', (message) => {
         console.log(message);
         // Foo
@@ -70,7 +71,7 @@ async function main() {
     console.log(channel.subscriptions());
     // ['global:events']
 
-    // Process all messages published on "global:events".
+    // (Generic listener) Process all messages published on "global:events".
     channel.on('message', (channel, message) => {
         channel === 'global:events' && console.log(message);
         // { foo: 'bar' }
@@ -109,20 +110,21 @@ import Redis = require("ioredis");
 import { RedSubscriber } from "redchannel";
 
 const client = new Redis();
+// Use "new RedSubscriber(client, false)" if you intend to use this library at scale
 const channel = new RedSubscriber(client);
 
 async function main(): Promise<void> {
     // Subscribe to all messages on "global:logs".
     await channel.subscribe(["global:logs"]);
 
-    // Process all messages published on "global:logs".
-    channel.on("message", (channel: string, message: string) => {
+    // (Generic listener) Process all messages published on "global:logs".
+    channel.on("message", (channel: string, message: any) => {
         channel === "global:logs" && console.log(message);
         // Foo
     });
 
-    // Process all messages published on "global:logs".
-    channel.on('global:logs', (message) => {
+    // (Event specific listener) Process all messages published on "global:logs".
+    channel.on('global:logs', (message: any) => {
         console.log(message);
         // Foo
     });
@@ -149,8 +151,8 @@ async function main(): Promise<void> {
     console.log(channel.subscriptions());
     // ['global:events']
 
-    // Process all messages published on "global:events".
-    channel.on('message', (channel: string, message: string) => {
+    // (Generic listener) Process all messages published on "global:events".
+    channel.on('message', (channel: string, message: any) => {
        channel === "global:events" && console.log(message);
         // { foo: 'bar' }
     });
