@@ -124,7 +124,7 @@ async function main(): Promise<void> {
     });
 
     // (Event specific listener) Process all messages published on "global:logs".
-    channel.on('global:logs', (message: any) => {
+    channel.on("global:logs", (message: any) => {
         console.log(message);
         // Foo
     });
@@ -152,7 +152,7 @@ async function main(): Promise<void> {
     // ['global:events']
 
     // (Generic listener) Process all messages published on "global:events".
-    channel.on('message', (channel: string, message: any) => {
+    channel.on("message", (channel: string, message: any) => {
        channel === "global:events" && console.log(message);
         // { foo: 'bar' }
     });
