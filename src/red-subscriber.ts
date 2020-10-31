@@ -43,7 +43,7 @@ export class RedSubscriber extends EventEmitter {
         return [...this.channels];
     }
 
-    public async subscribe(channels: string | string[]): Promise<void> {
+    public async subscribe(...channels: string[] | string[][]): Promise<void> {
         if (!Array.isArray(channels)) {
             channels = [channels];
         }
@@ -54,7 +54,7 @@ export class RedSubscriber extends EventEmitter {
         }
     }
 
-    public async unsubscribe(channels: string | string[]): Promise<void> {
+    public async unsubscribe(...channels: string | string[][]): Promise<void> {
         if (!Array.isArray(channels)) {
             channels = [channels];
         }
